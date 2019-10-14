@@ -1,0 +1,73 @@
+edit ex2
+;Matthieu LAMIELLE et Muruo WANG
+
+;Initialisation des outils
+tool pen
+openi
+
+;Initialisation position du robot
+moves wait.loc
+signal 5
+
+;inputs
+glue.empty = 1009
+glue.recharged = 1010
+
+;recharge le glue
+reacti glue.empty,recharger,50
+
+
+appro board:A, 50
+moves board:A
+closei
+
+moves board:B
+break
+
+moves board:C
+break
+
+moves board:D
+break
+
+moves board:A
+break
+
+departs 50
+
+move wait.loc
+
+set board = board:shift(null by 10,10,0)
+
+openi
+
+e
+
+edit recharger
+
+;inputs
+glue.recharged = 1010
+
+;On repère le point où on s'est interrompu
+set interruption = here
+set arrival = dest
+openi
+departs 50
+;On va recharger
+appro recharge, 50
+moves recharge
+wait sig(glue.recharged)
+departs 50 
+
+;On revient à l'endroit où on s'était arrêté
+appro interruption, 50
+moves interruption
+closei
+
+;On finit l'instruction a laquelle on s'était arrêté
+moves arrival
+
+e
+
+load glue.lc
+load alltools.v2

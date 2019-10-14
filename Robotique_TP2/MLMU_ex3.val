@@ -1,0 +1,39 @@
+edit ex3
+;Matthieu LAMIELLE et Muruo WANG
+
+;Tool
+tool gripper
+
+;Initialisation
+signal 5
+
+;Définir le frame
+set Palette = frame(origin,pt.x,pt.xy,origin)
+
+move wait.loc
+openi
+
+i=0
+j=0
+
+for i=0 to 2
+    for j=0 to 1
+        
+        set P = shift(null by 82*i, 59*j, 0)
+        set drop.loc = shift(drop.loc by 0, 0, 15)
+        
+        appro palette:P, 50
+        moves palette:P
+        closei
+        departs 50
+
+        appro drop.loc, 50
+        moves drop.loc
+        openi
+        depart 50
+    end
+end
+move wait.loc
+e
+load alltools.v2
+load pallet.lc

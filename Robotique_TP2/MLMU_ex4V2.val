@@ -1,0 +1,37 @@
+edit ex4V2
+;Matthieu LAMIELLE et Muruo WANG
+
+;Movement gardé
+execute 1 parallele, -1
+
+tool null
+speed 30 always
+speed 100 mmps always
+
+;On bouge manuellement le robot dans sa position de depart
+set P = here
+distancetot = 200
+
+timer 1 = 0
+;Decendre
+set fin = shift(P by 0,0,-distancetot)
+moves fin
+break
+
+vitesse = (distancetot)/timer(1)
+type "La vitesse moyenne est de ", vitesse
+
+abort 1
+
+e
+
+edit parallele
+
+;On definit une condition d'arrêt
+stop.condition = 1009
+
+if sig(stop.condition) then
+    brake
+end
+
+e

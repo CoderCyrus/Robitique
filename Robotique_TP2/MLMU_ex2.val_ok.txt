@@ -1,0 +1,48 @@
+zero
+y
+sp 30
+
+edit ex2
+tool pen
+openi
+moves wait.loc
+signal 5
+glue.empty = 1009
+glue.recharged = 1010
+reacti glue.empty,recharger,50
+appro board:a, 50
+moves board:a
+closei
+moves board:b
+break
+moves board:c
+break
+moves board:d
+break
+moves board:a
+break
+departs 50
+move wait.loc
+set board = board:shift(null by 10,10,0)
+openi
+e
+
+edit recharger
+openi
+glue.recharged = 1010
+set interruption = here
+set arrival = dest
+departs 50
+appro recharge, 50
+moves recharge
+wait sig(glue.recharged)
+departs 50
+appro interruption, 50
+moves interruption
+closei
+moves dest
+e
+
+load glue.lc
+load alltools.v2
+

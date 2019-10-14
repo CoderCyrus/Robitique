@@ -1,0 +1,27 @@
+zero
+y
+sp 30
+
+edit ex4v2
+execute 1 parallele, -1
+tool null
+speed 30 always
+speed 100 mmps always
+set p = here
+distancetot = 200
+timer 1 = 0
+set fin = shift(p by 0,0,distancetot)
+moves fin
+vitesse = (distancetot)/timer(1)
+type "la vitesse moyenne est de ", vitesse
+abort 1
+e
+
+edit parallele
+stop.condition = 1009
+if sig(stop.condition) then
+brake
+end
+e
+
+

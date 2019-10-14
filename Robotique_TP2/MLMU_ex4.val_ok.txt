@@ -1,0 +1,24 @@
+zero
+y
+sp 30
+
+edit ex4v1
+speed 30 always
+speed 100 mmps always
+tool null
+stop.condition = 1009
+set p = here
+distancetot = 700
+i = 0
+smalld = 5
+timer 1 = 0
+do
+set etape = shift(p by 0,0,-i*smalld)
+moves etape
+i = i+1
+until(sig(stop.condition) and (i*smalld < distancetot))
+vitesse = (i*smalld)/timer(1)
+type "la vitesse moyenne est de ", vitesse
+e
+
+

@@ -1,0 +1,55 @@
+zero
+y
+sp 30
+
+edit mlmu1.version1
+part.det.p1 = 1004
+part.det.p2 = 1005
+part.det.r2 = 1008
+part.det.r1 = 1007
+conveyor.start = 1
+conveyor.stop = -1
+conveyor.g = -2
+conveyor.d = 2
+signal 5
+tool succion.pad
+openi
+move wait.loc
+wait sig(part.det.p1) or sig(part.det.p2)
+if sig(part.det.p1)then
+set p=p1
+else
+set p=p2
+end
+appro p, 100
+moves p
+closei
+departs 50
+appro place,50
+moves place
+openi
+departs 100
+signal(conveyor.d)
+signal(conveyor.start)
+wait sig(part.det.r2)
+signal(conveyor.stop)
+timer 1 = 0
+wait timer(1) > 1
+signal(conveyor.g)
+signal(conveyor.start)
+wait sig(part.det.r1)
+signal(conveyor.stop)
+appro grasp.loc.stopped, 100
+moves grasp.loc.stopped
+closei
+departs 50
+appro p3,50
+moves p3
+openi
+departs 100
+move wait.loc
+e
+
+load pickconv.lc
+load alltools.v2
+

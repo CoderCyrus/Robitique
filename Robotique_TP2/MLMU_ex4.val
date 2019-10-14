@@ -1,0 +1,32 @@
+edit ex4V1
+;Matthieu LAMIELLE et Muruo WANG
+
+speed 30 always
+speed 100 mmps always
+
+tool null
+stop.condition = 1009
+
+;On bouge manuellement le robot dans sa position de depart
+set P = here
+
+;On definit la distance totale à parcourir
+distancetot = 200
+
+i = 0
+
+;On definit la longueur du déplacement intermediaire
+smalld = 5
+
+timer 1 = 0
+
+do 
+    set etape = shift(P by 0,0,-i*smalld)
+    moves etape
+    i = i+1
+until(sig(stop.condition) or (i*smalld > distancetot))
+
+vitesse = (i*smalld)/timer(1)
+type "La vitesse moyenne est de ", vitesse
+
+e
